@@ -1,10 +1,11 @@
 package coinmachine;
 
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
+import java.net.URL;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 public class CoinMachineUI extends JFrame {
 	
@@ -16,6 +17,8 @@ public class CoinMachineUI extends JFrame {
 	private JLabel insert;
 	
 	private JProgressBar progress;
+	
+	private  TitledBorder insertBorder;
 	
 	public CoinMachineUI() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,36 +37,41 @@ public class CoinMachineUI extends JFrame {
 		first.setLayout(new FlowLayout());
 		contents.add(first);
 		
-		Container second = new Container();
-		second.setLayout(new GridLayout(1, 1));
-		contents.add(second);
-		
-		Container third = new Container();
-		third.setLayout(new GridLayout(1, 3));
-		contents.add(third);
+		JPanel second = new JPanel();
+		second.setBorder(BorderFactory.createTitledBorder("Insert Money"));
 		
 		balance = new JLabel("#Balance: ");
 		first.add(balance);
 		
 		progress = new JProgressBar();
 		first.add(progress);
+	
+		contents.add(second);
 		
-		insert = new JLabel("Insert coin------------");
-		second.add(insert);
+		ClassLoader loader1 = this.getClass().getClassLoader();
+		URL url1 = loader1.getResource("images/1baht.png");
+		ImageIcon image1 = new ImageIcon(url1);
+		one = new JButton(image1);
+		second.add(one);
 		
-		one = new JButton();
-		one.setIcon(new ImageIcon("images/1baht.png"));
-				
-		five = new JButton();
-		five.setIcon(new ImageIcon("images/5baht.png"));
+		ClassLoader loader5 = this.getClass().getClassLoader();
+		URL url5 = loader5.getResource("images/5baht.png");
+		ImageIcon image5 = new ImageIcon(url5);
+		five = new JButton(image5);
+		second.add(five);
 		
-		ten = new JButton();
-		ten.setIcon(new ImageIcon("images/10baht.png"));
+		ClassLoader loader10 = this.getClass().getClassLoader();
+		URL url10 = loader10.getResource("images/10baht.png");
+		ImageIcon image10 = new ImageIcon(url10);
+		ten = new JButton(image10);
+		second.add(ten);
 		
-		third.add(one);
-		third.add(five);
-		third.add(ten);
-
+//		ClassLoader test = this.getClass().getClassLoader();
+//		URL url = test.getResource("images/1baht.png");
+//		ImageIcon image = new ImageIcon(url);
+//		JLabel a = new JLabel("image");
+//		contents.add(a);
+		
 		getContentPane().add(contents);
 		pack();
 		
