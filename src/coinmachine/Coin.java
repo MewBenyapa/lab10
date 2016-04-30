@@ -1,8 +1,12 @@
 package coinmachine;
+
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * A Coin represents metalic money with a value.
  */
-public class Coin /*TODO implements Comparable<Coin> */ {
+public class Coin implements Comparable<Coin>, Observer {
 	/** value of the coin */
 	private final int value;
 	private final String currency;
@@ -15,7 +19,7 @@ public class Coin /*TODO implements Comparable<Coin> */ {
 	public Coin(int value) {
 		this(value, "Baht");
 	}
-	
+
 	public Coin(int value, String currency) {
 		assert value > 0;  // if not, its YOUR fault
 		if (currency == null) throw new IllegalArgumentException("currency cannot be null");
@@ -29,13 +33,13 @@ public class Coin /*TODO implements Comparable<Coin> */ {
 	public int getValue() {
 		return value;
 	}
-	
+
 	/**
 	 * Get the coin's currency.
 	 * @return the currency of this coin.
 	 */
 	public String getCurrency() { return currency; }
-	
+
 
 	/**
 	 * Hashcode is used by collections like HashSet and HashMap.
@@ -61,9 +65,11 @@ public class Coin /*TODO implements Comparable<Coin> */ {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-//TODO Write a correct equals method for Coin.
-//     You can assume that the currency is never null.
-		return this == obj;
+		if (!currency.equals(((Coin)obj).getCurrency()) && this.getValue() == ((Coin)obj).getValue()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -73,4 +79,18 @@ public class Coin /*TODO implements Comparable<Coin> */ {
 	public String toString() {
 		return value+"-"+currency;
 	}
+
+	@Override
+	public int compareTo(Coin coin) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void update(Observable subject, Object info) {
+		if (info != null) {
+			System.out.println("This subject sent: " + info);
+		}
+	}
+
 }
