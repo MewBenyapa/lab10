@@ -9,6 +9,8 @@ public class CoinUI extends JFrame {
 	private JLabel status;
 	private JTextField numCoin;
 	
+	private int count;
+	
 	public CoinUI() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -19,6 +21,10 @@ public class CoinUI extends JFrame {
 	}
 	
 	public void initComponent() {
+		
+		CoinMachine machine = new CoinMachine(10);
+		count += machine.getCount();
+		
 		Container content = new Container();
 		content.setLayout(new GridLayout(2, 1));
 		this.add(content);
@@ -35,6 +41,7 @@ public class CoinUI extends JFrame {
 		first.add(coin);
 		
 		numCoin = new JTextField(5);
+		numCoin.setText(String.valueOf(count));
 		first.add(numCoin);
 		
 		status = new JLabel("Accepting Coins");
@@ -46,9 +53,4 @@ public class CoinUI extends JFrame {
 		pack();
 	}
 	
-	public static void main(String[] args) {
-		CoinUI test = new CoinUI();
-		test.run();
-	}
-
 }

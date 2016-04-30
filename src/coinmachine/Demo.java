@@ -64,7 +64,13 @@ public class Demo {
 		machine.addObserver(coin);
 		
 		Demo demo = new Demo();
-		//TODO add observers
+		
+		CoinMachineUI coinMachineUI = new CoinMachineUI();
+		coinMachineUI.run();
+		
+		CoinUI coinUI = new CoinUI();
+		coinUI.run();
+		
 		demo.insertDialog(machine);
 		
 	}
